@@ -61,9 +61,9 @@ app.get("/weather/:latlon", async (req, res) => {
   // const lat = latlon[0];
   // const lon = latlon[1];
 
-  // Boston
-  const lat = 42.36;
-  const lon = -71.0588;
+  // Fenway Park, Boston
+  const lat = 42.3467;
+  const lon = -71.0972;
 
   const API_KEY_WEATHERMAP = process.env.API_KEY_WEATHERMAP;
   const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY_WEATHERMAP}`;
@@ -71,7 +71,7 @@ app.get("/weather/:latlon", async (req, res) => {
   const weatherData = await weatherResponse.json();
 
   const API_KEY_OPENAQ = process.env.API_KEY_OPENAQ;
-  const aqURL = `https://api.openaq.org/v3/locations?coordinates=${lat},${lon}&radius=12000&limit=1000`;
+  const aqURL = `https://api.openaq.org/v3/locations?coordinates=${lat},${lon}&radius=1000&limit=10`;
 
   // request options, request must use valid body data type
   const options = {

@@ -58,7 +58,7 @@
               document.getElementById("temperature").textContent = weatherTemp;
 
               try {
-                const airQualitySensorId = atmoJSON.air_quality.results[1].sensors[0].id;
+                const airQualitySensorId = atmoJSON.air_quality.results[0].sensors[0].id;
 
                 const apiAirQualityURL = `/air_quality/${airQualitySensorId}`;
                 const airQualityResponse = await fetch(apiAirQualityURL);
