@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    </head>
+  <body>
+    <h1>Data Selfie App</h1>
+    <p><a href="index.html">index</a> | <a href="all.html">log</a></p>
+
+
+    <script async defer>
+
+      getData();
+      async function getData() {
+        const response = await fetch('/api');
+        const data = await response.json();
+        // console.log(data);
+
+        for (item of data) {
+          const root = document.createElement('div');
+          const geo = document.createElement('div');
+          const date = document.createElement('div');
+
+          geo.textContent = `${item.lat}°, ${item.lon}°`;
+          const dateString = new Date(item.timestamp).toLocaleString();
+          date.textContent = dateString;
+
+          root.append(geo, date);
+          document.body.append(root);
+        }
+      }
+      
+    </script>
+
+  </body>
+</html>
