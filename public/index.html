@@ -20,6 +20,7 @@
       <span id="temperature"></span>&deg; F.
     </p>
     <p>
+      <span id="aq_city"></span><br />
       The concentration of particulate matter (<span id="aq_parameter"></span>) is
       <span id="aq_value"></span> <span id="aq_units"></span> last read on
       <span id="aq_date"></span>.
@@ -58,15 +59,23 @@
               document.getElementById("temperature").textContent = weatherTemp;
 
               try {
-                const airQualitySensorId = atmoJSON.air_quality.results[0].sensors[0].id;
+                const airQualityCities = atmoJSON.air_quality.results;
+                const airQualityCity = airQualityCities[0];
+                const airQualitySensors = airQualityCity.sensors;
+                let sensorId = airQualitySensors[0];
 
-                const apiAirQualityURL = `/air_quality/${airQualitySensorId}`;
+                for (const element of airQualitySensors) {
+                  if (element.name.includes("pm25")) sensorId = element.id;
+                }
+
+                const apiAirQualityURL = `/air_quality/${sensorId}`;
                 const airQualityResponse = await fetch(apiAirQualityURL);
                 const airQualityJSON = await airQualityResponse.json();
                 console.log(airQualityJSON);
 
                 const airQuality = airQualityJSON.measurements.results[0];
 
+                document.getElementById("aq_city").textContent = airQualityCity.name;
                 document.getElementById("aq_parameter").textContent =
                   airQuality.parameter.displayName;
                 document.getElementById("aq_units").textContent = airQuality.parameter.units;
