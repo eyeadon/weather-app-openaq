@@ -16,6 +16,7 @@
       latitude: <span id="lat"></span>°<br />
       longitude: <span id="lon"></span>°<br />
     </p>
+    <p><span id="city"></span><br /></p>
     <p>
       The weather here is <span id="summary"></span> with a temperature of
       <span id="temperature"></span>&deg; F.
@@ -53,9 +54,11 @@
               const atmoJSON = await weatherResponse.json();
               console.log(atmoJSON);
 
+              const weatherCity = atmoJSON.weather.name;
               const weatherSum = atmoJSON.weather.weather[0].main;
               const weatherTemp = atmoJSON.weather.main.temp;
 
+              document.getElementById("city").textContent = weatherCity;
               document.getElementById("summary").textContent = weatherSum;
               document.getElementById("temperature").textContent = weatherTemp;
 
@@ -75,13 +78,15 @@
                 console.log(airQualityJSON);
 
                 const airQuality = airQualityJSON.measurements.results[0];
+                const airQualityLatestDate = new Date(airQuality.latest.datetime.local);
 
                 document.getElementById("aq_city").textContent = airQualityCity.name;
                 document.getElementById("aq_parameter").textContent =
                   airQuality.parameter.displayName;
                 document.getElementById("aq_units").textContent = airQuality.parameter.units;
                 document.getElementById("aq_value").textContent = airQuality.latest.value;
-                document.getElementById("aq_date").textContent = airQuality.latest.datetime.local;
+                document.getElementById("aq_date").textContent =
+                  airQualityLatestDate.toLocaleString();
               } catch (error) {
                 console.error(error);
                 airQuality = { value: -1 };
