@@ -30,22 +30,25 @@
         <span id="aq_date"></span>.
       </p>
 
-      <button type="submit" onclick="saveLocation()">Submit</button>
+      <button type="submit" onclick="saveLocation()">Save Location</button>
     </div>
 
     <script async defer>
+      let lat;
+      let lon;
+
       function toFixedNumber(num, digits) {
         var pow = Math.pow(10, digits);
         return Math.round(num * pow) / pow;
       }
 
-      function saveLocation() {
+      function getWeatherData() {
         if ("geolocation" in navigator) {
           console.log("geolocation available");
 
           navigator.geolocation.getCurrentPosition(async (position) => {
-            const lat = toFixedNumber(position.coords.latitude, 4);
-            const lon = toFixedNumber(position.coords.longitude, 4);
+            lat = toFixedNumber(position.coords.latitude, 4);
+            lon = toFixedNumber(position.coords.longitude, 4);
 
             try {
               document.getElementById("lat").textContent = lat.toFixed(2);
@@ -109,28 +112,33 @@
               document.getElementById("summary").textContent = "NO READING";
               document.getElementById("temperature").textContent = "NO READING";
             }
-
-            const data = { lat, lon };
-            // console.log(data);
-
-            // request options, request must use valid body data type
-            const options = {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              // convert object to JSON string for server
-              body: JSON.stringify(data),
-            };
-
-            const response = await fetch("/api", options);
-            const json = await response.json(); // parses JSON response into native JavaScript objects
-            // console.log(json);
           }); // end getCurrentPosition
         } else {
           console.log("geolocation not available");
         }
       }
+
+      async function saveLocation() {
+        const data = { lat, lon };
+        // console.log(data);
+
+        // request options, request must use valid body data type
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // convert object to JSON string for server
+          body: JSON.stringify(data),
+        };
+
+        const response = await fetch("/api", options);
+        // parses JSON response into native JavaScript objects
+        const json = await response.json();
+        console.log(json);
+      }
+
+      getWeatherData();
     </script>
   </body>
 </html>
