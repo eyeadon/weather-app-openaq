@@ -10,26 +10,28 @@
     <link href="./output.css" rel="stylesheet" />
   </head>
   <body>
-    <h1 class="text-3xl font-bold text-clifford">Hello world!</h1>
-    <p><a href="index.html">index</a> | <a href="all.html">log</a></p>
-    <p>
-      latitude: <span id="lat"></span>°<br />
-      longitude: <span id="lon"></span>°<br />
-    </p>
-    <p><span id="city"></span><br /></p>
-    <p><span id="img_weatherIcon"></span><br /></p>
-    <p>
-      The weather here is <span id="summary"></span> with a temperature of
-      <span id="temperature"></span>&deg; F.
-    </p>
-    <p>
-      <span id="aq_city"></span><br />
-      The concentration of particulate matter (<span id="aq_parameter"></span>) is
-      <span id="aq_value"></span> <span id="aq_units"></span> last read on
-      <span id="aq_date"></span>.
-    </p>
+    <div class="p-8">
+      <h1 class="text-3xl font-bold text-clifford">Hello world!</h1>
+      <p><a href="index.html">index</a> | <a href="all.html">log</a></p>
+      <p>
+        latitude: <span id="lat"></span>°<br />
+        longitude: <span id="lon"></span>°<br />
+      </p>
+      <p><span id="city"></span><br /></p>
+      <p><span id="img_weatherIcon"></span><br /></p>
+      <p>
+        The weather here is <span id="summary"></span> with a temperature of
+        <span id="temperature"></span>&deg; F.
+      </p>
+      <p>
+        <span id="aq_city"></span><br />
+        The concentration of particulate matter (<span id="aq_parameter"></span>) is
+        <span id="aq_value"></span> <span id="aq_units"></span> last read on
+        <span id="aq_date"></span>.
+      </p>
 
-    <button type="submit" onclick="saveLocation()">Submit</button>
+      <button type="submit" onclick="saveLocation()">Submit</button>
+    </div>
 
     <script async defer>
       function toFixedNumber(num, digits) {
