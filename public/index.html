@@ -17,6 +17,7 @@
       longitude: <span id="lon"></span>°<br />
     </p>
     <p><span id="city"></span><br /></p>
+    <p><span id="img_weatherIcon"></span><br /></p>
     <p>
       The weather here is <span id="summary"></span> with a temperature of
       <span id="temperature"></span>&deg; F.
@@ -57,6 +58,15 @@
               const weatherCity = atmoJSON.weather.name;
               const weatherSum = atmoJSON.weather.weather[0].main;
               const weatherTemp = atmoJSON.weather.main.temp;
+              const weatherIcon = atmoJSON.weather.weather[0].icon;
+
+              function addimage() {
+                var img = new Image();
+                img.src = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+                img_weatherIcon.appendChild(img);
+              }
+
+              addimage();
 
               document.getElementById("city").textContent = weatherCity;
               document.getElementById("summary").textContent = weatherSum;
