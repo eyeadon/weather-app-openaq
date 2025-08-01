@@ -44,7 +44,7 @@
       let weatherData = (async () => {
         const data = await getWeatherData();
         console.log("data:", data);
-        await getAirQualityData(data.atmoJSON);
+        await getAirQualityData(data.atmoDataObject);
 
         return data;
       })();

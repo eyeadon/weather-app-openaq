@@ -9,12 +9,12 @@ function toFixedNumber(num, digits) {
 
 async function getWeatherData() {
   let coordinates = {};
-  let atmoJSON = {};
+  let atmoDataObject = {};
 
   if ("geolocation" in navigator) {
     console.log("geolocation available");
 
-    atmoJSON = await new Promise((resolve, reject) => {
+    atmoDataObject = await new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(async (position) => {
         coordinates.lat = toFixedNumber(position.coords.latitude, 4);
         coordinates.lon = toFixedNumber(position.coords.longitude, 4);
@@ -28,13 +28,13 @@ async function getWeatherData() {
 
           const apiWeatherURL = `/weather/${coordinates.lat},${coordinates.lon}`;
           const weatherResponse = await fetch(apiWeatherURL);
-          atmoJSON = await weatherResponse.json();
-          console.log(atmoJSON);
+          atmoDataObject = await weatherResponse.json();
+          console.log(atmoDataObject);
 
-          const weatherCity = atmoJSON.weather.name;
-          const weatherSum = atmoJSON.weather.weather[0].main;
-          const weatherTemp = atmoJSON.weather.main.temp;
-          const weatherIcon = atmoJSON.weather.weather[0].icon;
+          const weatherCity = atmoDataObject.weather.name;
+          const weatherSum = atmoDataObject.weather.weather[0].main;
+          const weatherTemp = atmoDataObject.weather.main.temp;
+          const weatherIcon = atmoDataObject.weather.weather[0].icon;
 
           function addimage() {
             var img = new Image();
@@ -48,7 +48,7 @@ async function getWeatherData() {
           document.getElementById("summary").textContent = weatherSum;
           document.getElementById("temperature").textContent = weatherTemp;
 
-          resolve(atmoJSON);
+          resolve(atmoDataObject);
         } catch (error) {
           reject(console.error(error));
           document.getElementById("city").textContent = "NO READING";
@@ -61,12 +61,12 @@ async function getWeatherData() {
     console.log("geolocation not available");
   }
 
-  return { coordinates, atmoJSON };
+  return { coordinates, atmoDataObject };
 }
 
-async function getAirQualityData(atmoJSON) {
+async function getAirQualityData(atmoDataObject) {
   try {
-    const airQualityCities = atmoJSON.air_quality.results;
+    const airQualityCities = atmoDataObject.air_quality.results;
     const airQualityCity = airQualityCities[0];
     const airQualitySensors = airQualityCity.sensors;
     let sensorId = airQualitySensors[0];
