@@ -7,52 +7,56 @@ function toFixedNumber(num, digits) {
   return Math.round(num * pow) / pow;
 }
 
-function getWeatherData() {
+async function getWeatherData() {
   let coordinates = {};
   let atmoJSON = {};
 
   if ("geolocation" in navigator) {
     console.log("geolocation available");
 
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      coordinates.lat = toFixedNumber(position.coords.latitude, 4);
-      coordinates.lon = toFixedNumber(position.coords.longitude, 4);
+    atmoJSON = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        coordinates.lat = toFixedNumber(position.coords.latitude, 4);
+        coordinates.lon = toFixedNumber(position.coords.longitude, 4);
 
-      try {
-        document.getElementById("lat").textContent = coordinates.lat.toFixed(2);
-        document.getElementById("lon").textContent = coordinates.lon.toFixed(2);
-        // console.log(position);
+        try {
+          document.getElementById("lat").textContent =
+            coordinates.lat.toFixed(2);
+          document.getElementById("lon").textContent =
+            coordinates.lon.toFixed(2);
+          // console.log(position);
 
-        const apiWeatherURL = `/weather/${coordinates.lat},${coordinates.lon}`;
-        const weatherResponse = await fetch(apiWeatherURL);
-        atmoJSON = await weatherResponse.json();
-        console.log(atmoJSON);
+          const apiWeatherURL = `/weather/${coordinates.lat},${coordinates.lon}`;
+          const weatherResponse = await fetch(apiWeatherURL);
+          atmoJSON = await weatherResponse.json();
+          console.log(atmoJSON);
 
-        const weatherCity = atmoJSON.weather.name;
-        const weatherSum = atmoJSON.weather.weather[0].main;
-        const weatherTemp = atmoJSON.weather.main.temp;
-        const weatherIcon = atmoJSON.weather.weather[0].icon;
+          const weatherCity = atmoJSON.weather.name;
+          const weatherSum = atmoJSON.weather.weather[0].main;
+          const weatherTemp = atmoJSON.weather.main.temp;
+          const weatherIcon = atmoJSON.weather.weather[0].icon;
 
-        function addimage() {
-          var img = new Image();
-          img.src = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-          document.getElementById("img_weatherIcon").appendChild(img);
+          function addimage() {
+            var img = new Image();
+            img.src = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+            document.getElementById("img_weatherIcon").appendChild(img);
+          }
+
+          addimage();
+
+          document.getElementById("city").textContent = weatherCity;
+          document.getElementById("summary").textContent = weatherSum;
+          document.getElementById("temperature").textContent = weatherTemp;
+
+          resolve(atmoJSON);
+        } catch (error) {
+          reject(console.error(error));
+          document.getElementById("city").textContent = "NO READING";
+          document.getElementById("summary").textContent = "NO READING";
+          document.getElementById("temperature").textContent = "NO READING";
         }
-
-        addimage();
-
-        document.getElementById("city").textContent = weatherCity;
-        document.getElementById("summary").textContent = weatherSum;
-        document.getElementById("temperature").textContent = weatherTemp;
-
-        getAirQualityData(atmoJSON);
-      } catch (error) {
-        console.error(error);
-        document.getElementById("city").textContent = "NO READING";
-        document.getElementById("summary").textContent = "NO READING";
-        document.getElementById("temperature").textContent = "NO READING";
-      }
-    }); // end getCurrentPosition
+      }); // end getCurrentPosition
+    }); // end Promise
   } else {
     console.log("geolocation not available");
   }
