@@ -31,7 +31,7 @@
 
       <button
         type="submit"
-        onclick="isEmptyObject(coordinates) ? null : saveLocation(coordinates.lat, coordinates.lon)"
+        onclick="isEmptyObject(coordinates) ? null : saveLocation(weatherData.coordinates.lat, weatherData.coordinates.lon)"
       >
         Save Location
       </button>
@@ -39,7 +39,9 @@
 
     <script src="functions.js" type="text/javascript"></script>
     <script async>
-      const coordinates = getWeatherData();
+      const weatherData = getWeatherData();
+      console.log(weatherData);
+      getAirQualityData(weatherData.atmoJSON);
     </script>
   </body>
 </html>
