@@ -77,10 +77,10 @@ async function getAirQualityData(atmoDataObject) {
 
     const apiAirQualityURL = `/air_quality/${sensorId}`;
     const airQualityResponse = await fetch(apiAirQualityURL);
-    const airQualityJSON = await airQualityResponse.json();
-    console.log(airQualityJSON);
+    const airQualityDataObject = await airQualityResponse.json();
+    console.log(airQualityDataObject);
 
-    const airQuality = airQualityJSON.measurements.results[0];
+    const airQuality = airQualityDataObject.measurements.results[0];
     const airQualityLatestDate = new Date(airQuality.latest.datetime.local);
 
     document.getElementById("aq_city").textContent = airQualityCity.name;
