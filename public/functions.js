@@ -97,23 +97,3 @@ async function getAirQualityData(atmoDataObject) {
     document.getElementById("aq_value").textContent = "NO READING";
   }
 }
-
-async function saveLocation(lat, lon) {
-  const data = { lat, lon };
-  // console.log(data);
-
-  // request options, request must use valid body data type
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    // convert object to JSON string for server
-    body: JSON.stringify(data),
-  };
-
-  const response = await fetch("/api", options);
-  // parses JSON response into native JavaScript objects
-  const json = await response.json();
-  console.log(json);
-}
