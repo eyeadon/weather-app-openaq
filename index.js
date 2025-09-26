@@ -1,58 +1,17 @@
 const express = require("express");
-const Datastore = require("nedb");
 const fetch = require("node-fetch");
 require("dotenv").config();
 // console.log(process.env);
 
 const app = express();
 const port = process.env.PORT || 3000;
-// in browser, must use localhost:3000, not GoLive
+
 app.listen(port, () => console.log(`listening at ${port}`));
 app.use(express.static("public"));
 
 // JSON parser, understand incoming data as JSON
 // request object updated with new body object containing parsed data
 app.use(express.json({ limit: "1mb" }));
-
-const database = new Datastore("database.db");
-database.loadDatabase();
-
-app.get("/api", (req, res) => {
-  database.find({}, (err, data) => {
-    if (err) {
-      res.end();
-      return;
-    }
-    res.json(data);
-  });
-});
-
-app.post("/api", (req, res) => {
-  console.log("request received");
-  // console.log(req.body);
-  // JSON string is received from client, parsed into object
-  const data = req.body;
-
-  const timestamp = Date.now();
-  data.timestamp = timestamp;
-
-  // insert data (object) into database
-  database.insert(data);
-
-  // complete request
-  // express Response function
-  // sends response back to client as JSON, the parameter coverted to JSON string
-  res.json(data);
-
-  // response.json({
-  //   status: 'success',
-  //   timestamp: timestamp,
-  //   latitude: data.lat,
-  //   longitude: data.lon
-  // });
-});
-
-// must install node-fetch?
 
 app.get("/weather/:latlon", async (req, res) => {
   // route parameters

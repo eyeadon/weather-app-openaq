@@ -16,7 +16,6 @@
     "@tailwindcss/cli": "^4.1.11",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
-    "nedb": "^1.8.0",
     "node-fetch": "^2.6.9",
     "tailwindcss": "^4.1.11"
   }
