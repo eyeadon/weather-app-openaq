@@ -9,24 +9,34 @@
     <link href="./output.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="p-8">
-      <h1 class="text-2xl font-bold text-clifford">Weather</h1>
-      <p>
-        latitude: <span id="lat"></span>°<br />
-        longitude: <span id="lon"></span>°<br />
-      </p>
-      <p><span id="city"></span><br /></p>
-      <p><span id="img_weatherIcon"></span><br /></p>
-      <p>
-        The weather here is <span id="summary"></span> with a temperature of
-        <span id="temperature"></span>&deg; F.
-      </p>
-      <p class="pb-2">
-        Air quality data is available from <span id="aq_city"></span><br />
-        The concentration of particulate matter (<span id="aq_parameter"></span>) is
-        <span id="aq_value"></span> <span id="aq_units"></span> last read on
-        <span id="aq_date"></span>.
-      </p>
+    <div class="container mx-auto">
+      <div class="flex items-center justify-center">
+        <div class="max-w-1/2 p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
+          <h1 class="text-2xl font-bold text-clifford py-2">Weather</h1>
+          <div class="flex flex-row gap-2">
+            <div class="basis-64">
+              <p>
+                latitude: <span id="lat"></span>°<br />
+                longitude: <span id="lon"></span>°<br />
+              </p>
+              <p><span id="city"></span><br /></p>
+              <p><span id="img_weatherIcon"></span><br /></p>
+              <p>
+                The weather here is <span id="summary"></span> with a temperature of
+                <span id="temperature"></span>&deg; F.
+              </p>
+            </div>
+            <div class="basis-64">
+              <p class="pb-2">Air quality data is available from <span id="aq_city"></span></p>
+              <p class="pb-2">
+                The concentration of particulate matter (<span id="aq_parameter"></span>) is
+                <span id="aq_value"></span> <span id="aq_units"></span> last read on
+                <span id="aq_date"></span>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="functions.js" type="text/javascript"></script>
