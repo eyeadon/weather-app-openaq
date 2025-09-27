@@ -15,7 +15,7 @@ const app = express();
 // app.use(express.json());
 
 app.get("/", (req, res) => {
-  response.sendFile("public/index.html");
+  response.sendFile("../public/index.html");
 });
 
 app.get("/weather/:latlon", async (req, res) => {
