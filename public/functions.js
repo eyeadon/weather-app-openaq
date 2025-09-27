@@ -14,6 +14,16 @@ async function getWeatherData() {
   if ("geolocation" in navigator) {
     console.log("geolocation available");
 
+    document.getElementById("city").innerHTML = "<em>NO READING YET</em>";
+    document.getElementById("summary").innerHTML = "<em>NO READING YET</em>";
+    document.getElementById("temperature").textContent = "";
+
+    document.getElementById("aq_city").innerHTML = "<em>NO READING YET</em>";
+    document.getElementById("aq_parameter").textContent = "?";
+    document.getElementById("aq_units").textContent = "?";
+    document.getElementById("aq_value").textContent = "";
+    document.getElementById("aq_date").textContent = "?";
+
     atmoDataObject = await new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(async (position) => {
         coordinates.lat = toFixedNumber(position.coords.latitude, 4);
