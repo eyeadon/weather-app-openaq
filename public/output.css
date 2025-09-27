@@ -196,8 +196,20 @@
   .flex {
     display: flex;
   }
+  .w-128 {
+    width: calc(var(--spacing) * 128);
+  }
   .max-w-1\/2 {
     max-width: calc(1/2 * 100%);
+  }
+  .max-w-120 {
+    max-width: calc(var(--spacing) * 120);
+  }
+  .max-w-128 {
+    max-width: calc(var(--spacing) * 128);
+  }
+  .max-w-200 {
+    max-width: calc(var(--spacing) * 200);
   }
   .basis-64 {
     flex-basis: calc(var(--spacing) * 64);
@@ -226,6 +238,9 @@
   }
   .bg-white {
     background-color: var(--color-white);
+  }
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
   }
   .p-6 {
     padding: calc(var(--spacing) * 6);

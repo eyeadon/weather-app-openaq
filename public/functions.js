@@ -10,13 +10,26 @@ function toFixedNumber(num, digits) {
 async function getWeatherData() {
   let coordinates = {};
   let atmoDataObject = {};
+  const iconElement = document.getElementById("img_weatherIcon");
+
+  function addImage(url) {
+    var img = new Image();
+    img.src = url;
+
+    if (iconElement.firstChild) {
+      iconElement.replaceChild(img, iconElement.firstChild);
+    } else {
+      iconElement.appendChild(img);
+    }
+  }
 
   if ("geolocation" in navigator) {
     console.log("geolocation available");
 
     document.getElementById("city").innerHTML = "<em>NO READING YET</em>";
-    document.getElementById("summary").innerHTML = "<em>NO READING YET</em>";
     document.getElementById("temperature").textContent = "";
+    document.getElementById("summary").innerHTML = "<em>NO READING YET</em>";
+    addImage("images/no-weather.png");
 
     document.getElementById("aq_city").innerHTML = "<em>NO READING YET</em>";
     document.getElementById("aq_parameter").textContent = "?";
@@ -42,17 +55,11 @@ async function getWeatherData() {
           console.log(atmoDataObject);
 
           const weatherCity = atmoDataObject.weather.name;
-          const weatherSum = atmoDataObject.weather.weather[0].main;
           const weatherTemp = atmoDataObject.weather.main.temp;
+          const weatherSum = atmoDataObject.weather.weather[0].main;
           const weatherIcon = atmoDataObject.weather.weather[0].icon;
 
-          function addimage() {
-            var img = new Image();
-            img.src = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-            document.getElementById("img_weatherIcon").appendChild(img);
-          }
-
-          addimage();
+          addImage(`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`);
 
           document.getElementById("city").textContent = weatherCity;
           document.getElementById("summary").textContent = weatherSum;

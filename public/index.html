@@ -3,15 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
+    <title>Weather Widget</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="./output.css" rel="stylesheet" />
   </head>
   <body>
     <div class="container mx-auto">
-      <div class="flex items-center justify-center">
-        <div class="max-w-1/2 p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
+      <div class="flex items-center justify-center p-2">
+        <div class="w-128 p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
           <h1 class="text-2xl font-bold text-sky-500 py-2">Weather</h1>
           <div class="flex flex-row gap-2">
             <div class="basis-64">
@@ -19,13 +20,13 @@
                 latitude: <span id="lat"></span>°<br />
                 longitude: <span id="lon"></span>°<br />
               </p>
-              <p><span id="city"></span><br /></p>
+              <p><span id="city" class="font-bold text-stone-600"></span><br /></p>
               <p>
                 <span id="img_weatherIcon"></span>
                 <span id="temperature" class="text-2xl font-bold text-amber-700"></span>
                 <span class="text-2xl font-bold text-amber-700">&deg; F</span>
               </p>
-              <p>The weather is <span id="summary" class="font-bold text-stone-600"></span></p>
+              <p><span id="summary" class="font-bold text-stone-600"></span></p>
             </div>
             <div class="basis-64">
               <p class="pb-2">Air quality data is available from <span id="aq_city"></span></p>
