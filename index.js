@@ -4,14 +4,15 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`listening at ${port}`));
+// const port = process.env.PORT || 3000;
+// app.listen(port, () => console.log(`listening at ${port}`));
+
 app.use(express.static("public"));
 
 // JSON parser, understand incoming data as JSON
 // request object updated with new body object containing parsed data
-app.use(express.json());
+// app.use(express.json());
 
 app.get("/weather/:latlon", async (req, res) => {
   // route parameters
