@@ -14,6 +14,10 @@ const app = express();
 // request object updated with new body object containing parsed data
 // app.use(express.json());
 
+app.get("/", (req, res) => {
+  response.sendFile("public/index.html");
+});
+
 app.get("/weather/:latlon", async (req, res) => {
   // route parameters
   const latlon = req.params.latlon.split(",");
