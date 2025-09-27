@@ -2,22 +2,11 @@ import express from "express";
 import fetch from "node-fetch";
 import path from "path";
 import { fileURLToPath } from "url";
-// import dotenv from "dotenv";
-// dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-
-// const port = process.env.PORT || 3000;
-// app.listen(port, () => console.log(`listening at ${port}`));
-
-// app.use(express.static("public"));
-
-// JSON parser, understand incoming data as JSON
-// request object updated with new body object containing parsed data
-// app.use(express.json());
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public", "index.html"));
