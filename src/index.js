@@ -1,7 +1,12 @@
 import express from "express";
 import fetch from "node-fetch";
+import path from "path";
+import { fileURLToPath } from "url";
 // import dotenv from "dotenv";
 // dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -15,7 +20,7 @@ const app = express();
 // app.use(express.json());
 
 app.get("/", (req, res) => {
-  response.sendFile("../public/index.html");
+  res.sendFile(path.join(__dirname, "..", "public", "index.html"));
 });
 
 app.get("/weather/:latlon", async (req, res) => {
