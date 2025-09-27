@@ -1,7 +1,7 @@
-const express = require("express");
-const fetch = require("node-fetch");
-require("dotenv").config();
-// console.log(process.env);
+import express from "express";
+import fetch from "node-fetch";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,7 +11,7 @@ app.use(express.static("public"));
 
 // JSON parser, understand incoming data as JSON
 // request object updated with new body object containing parsed data
-app.use(express.json({ limit: "1mb" }));
+app.use(express.json());
 
 app.get("/weather/:latlon", async (req, res) => {
   // route parameters
@@ -71,3 +71,5 @@ app.get("/air_quality/:sensorId", async (req, res) => {
   };
   res.json(airQualityData);
 });
+
+export default app;

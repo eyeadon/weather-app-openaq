@@ -1,6 +1,7 @@
 {
   "name": "practice-api-express",
   "version": "1.0.0",
+  "type": "module",
   "description": "Coding Train practice",
   "main": "index.js",
   "scripts": {
