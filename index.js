@@ -1,14 +1,14 @@
 import express from "express";
 import fetch from "node-fetch";
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
 const app = express();
 
 // const port = process.env.PORT || 3000;
 // app.listen(port, () => console.log(`listening at ${port}`));
 
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
 // JSON parser, understand incoming data as JSON
 // request object updated with new body object containing parsed data
