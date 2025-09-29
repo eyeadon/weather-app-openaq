@@ -10,7 +10,6 @@
     --color-amber-700: oklch(55.5% 0.163 48.998);
     --color-green-900: oklch(39.3% 0.095 152.535);
     --color-emerald-900: oklch(37.8% 0.077 168.94);
-    --color-emerald-950: oklch(26.2% 0.051 172.552);
     --color-sky-500: oklch(68.5% 0.169 237.323);
     --color-sky-800: oklch(44.3% 0.11 240.79);
     --color-sky-950: oklch(29.3% 0.066 243.157);
@@ -236,6 +235,9 @@
   .p-6 {
     padding: calc(var(--spacing) * 6);
   }
+  .p-10 {
+    padding: calc(var(--spacing) * 10);
+  }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
@@ -253,9 +255,6 @@
   .text-amber-700 {
     color: var(--color-amber-700);
   }
-  .text-emerald-900 {
-    color: var(--color-emerald-900);
-  }
   .text-green-900 {
     color: var(--color-green-900);
   }
@@ -264,9 +263,6 @@
   }
   .text-sky-800 {
     color: var(--color-sky-800);
-  }
-  .text-sky-950 {
-    color: var(--color-sky-950);
   }
   .text-stone-600 {
     color: var(--color-stone-600);
