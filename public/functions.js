@@ -63,7 +63,8 @@ async function getWeatherData() {
 
           document.getElementById("city").textContent = weatherCity;
           document.getElementById("summary").textContent = weatherSum;
-          document.getElementById("temperature").textContent = weatherTemp;
+          document.getElementById("temperature").textContent =
+            Math.round(weatherTemp);
 
           resolve(atmoDataObject);
         } catch (error) {

@@ -14,13 +14,9 @@
       <div class="flex items-center justify-center p-2">
         <div class="w-128 p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
           <h1 class="text-2xl font-bold text-sky-500 py-2">Weather</h1>
-          <div class="flex flex-row gap-2">
+          <div class="flex flex-row items-center gap-2">
             <div class="basis-64">
-              <p>
-                latitude: <span id="lat"></span>°<br />
-                longitude: <span id="lon"></span>°<br />
-              </p>
-              <p><span id="city" class="font-bold text-stone-600"></span><br /></p>
+              <p><span id="city" class="font-bold text-sky-800"></span><br /></p>
               <p>
                 <span id="img_weatherIcon"></span>
                 <span id="temperature" class="text-2xl font-bold text-amber-700"></span>
@@ -29,9 +25,18 @@
               <p><span id="summary" class="font-bold text-stone-600"></span></p>
             </div>
             <div class="basis-64">
-              <p class="pb-2">Air quality data is available from <span id="aq_city"></span></p>
               <p class="pb-2">
-                The concentration of particulate matter (<span id="aq_parameter"></span>) is
+                latitude: <span id="lat" class="latLonText"></span><span class="latLonText">°</span>
+                <br />
+                longitude: <span id="lon" class="latLonText"></span
+                ><span class="latLonText">°</span>
+              </p>
+              <p class="pb-2">
+                Air quality data is available from
+                <span id="aq_city" class="font-bold text-green-900"></span>
+              </p>
+              <p class="pb-2">
+                The concentration of particulate matter <span id="aq_parameter"></span> is
                 <span id="aq_value"></span> <span id="aq_units"></span> last read on
                 <span id="aq_date"></span>
               </p>
